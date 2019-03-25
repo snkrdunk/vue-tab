@@ -163,11 +163,11 @@
                 var quick = new Date().getTime() - this.startTime < 1000;
                 // console.log(quick);
                 // console.log(this.distance.top);
-                if((this.distance.left < -(this.swipeDistance * this.dpr) && this.distance.top < (this.swipeTopDistance * this.dpr)) || (quick && this.distance.left < -15 && this.distance.top / this.distance.left > -6)) {
+                if((this.distance.left < -(this.swipeDistance * this.dpr) && this.distance.top < (this.swipeTopDistance * this.dpr)) || (quick && this.distance.left < -15 && this.distance.top / this.distance.left > -5)) {
                     console.log('next');
                     // console.log(-(100 * this.dpr));
                     this.next();
-                } else if((this.distance.left > (this.swipeDistance * this.dpr) && this.distance.top < (this.swipeTopDistance * this.dpr)) || (quick && this.distance.left > 15 && this.distance.top / this.distance.left < 6)) {
+                } else if((this.distance.left > (this.swipeDistance * this.dpr) && this.distance.top < (this.swipeTopDistance * this.dpr)) || (quick && this.distance.left > 15 && this.distance.top / this.distance.left < 5)) {
                     // console.log(this.distance.left);
                     // console.log(100 * this.dpr);
                     console.log('prev');
@@ -182,10 +182,6 @@
             initDPR() {
                 var win = window;
                 var isAndroid = win.navigator.appVersion.match(/android/gi);
-                if (isAndroid) {
-                  this.swipeTopDistance = 50;
-                }
-
                 var isIPhone = win.navigator.appVersion.match(/iphone/gi);
                 var devicePixelRatio = win.devicePixelRatio;
                 if(isIPhone) {
