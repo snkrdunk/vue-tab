@@ -61,7 +61,7 @@
                 startTranslateX: 0,
                 swipeType: INIT,
                 dpr: 1,
-                swipeTopDistance: 100
+                swipeTopDistance: 60
             }
         },
         methods: {
@@ -163,11 +163,11 @@
                 var quick = new Date().getTime() - this.startTime < 1000;
                 // console.log(quick);
                 // console.log(this.distance.top);
-                if(Math.abs(this.distance.left) > Math.abs(this.distance.top) && (this.distance.left < -(this.swipeDistance * this.dpr) && this.distance.top < (this.swipeTopDistance * this.dpr)) || (quick && this.distance.left < -15 && this.distance.top / this.distance.left > -5)) {
+                if((this.distance.left < -(this.swipeDistance * this.dpr) && this.distance.top < (this.swipeTopDistance * this.dpr)) || (quick && this.distance.left < -15 && this.distance.top / this.distance.left > -5)) {
                     console.log('next');
                     // console.log(-(100 * this.dpr));
                     this.next();
-                } else if(Math.abs(this.distance.left) > Math.abs(this.distance.top) && (this.distance.left > (this.swipeDistance * this.dpr) && this.distance.top < (this.swipeTopDistance * this.dpr)) || (quick && this.distance.left > 15 && this.distance.top / this.distance.left < 5)) {
+                } else if((this.distance.left > (this.swipeDistance * this.dpr) && this.distance.top < (this.swipeTopDistance * this.dpr)) || (quick && this.distance.left > 15 && this.distance.top / this.distance.left < 5)) {
                     // console.log(this.distance.left);
                     // console.log(100 * this.dpr);
                     console.log('prev');
@@ -190,11 +190,11 @@
                     } else if(devicePixelRatio >= 2 && this.dpr){
                         this.dpr = 2;
                     } else {
-                        // this.dpr = 1;
-                        this.dpr = 1.5;
+                        this.dpr = 1;
+                        // this.dpr = 1.5;
                     }
                 } else {
-                    // this.dpr = 1;
+                    / this.dpr = 1;
                     this.dpr = 1.5;
                 }
             }
