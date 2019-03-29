@@ -118,11 +118,11 @@
             onTouchStart(event) {
                 const touchPoint = event.changedTouches[0] || event.touches[0];
 
-                const startLeft = touchPoint.pageX;
+                const startLeft = touchPoint.clientX;
                 // console.log('left:' + startLeft);
                 this.touchPoint.startLeft = startLeft;
 
-                const startTop = touchPoint.screenY;
+                const startTop = touchPoint.clientY;
                 // console.log('top:' + startTop);
                 this.touchPoint.startTop = startTop;
 
@@ -135,10 +135,10 @@
             },
             onTouchMove(event) {
                 const touchPoint = event.changedTouches[0] || event.touches[0];
-                const distanceLeft = touchPoint.pageX - this.touchPoint.startLeft;
+                const distanceLeft = touchPoint.clientX - this.touchPoint.startLeft;
                 // console.log('distance:' + distanceLeft);
                 this.distance.left = distanceLeft;
-                const distanceTop = Math.abs(touchPoint.screenY - this.touchPoint.startTop);
+                const distanceTop = Math.abs(touchPoint.clientY - this.touchPoint.startTop);
                 // console.log('distanceTop:' + distanceTop);
                 this.distance.top = distanceTop;
 
@@ -163,11 +163,11 @@
                 var quick = new Date().getTime() - this.startTime < 1000;
                 // console.log(quick);
                 // console.log(this.distance.top);
-                if(Math.abs(this.distance.left) > Math.abs(this.distance.top) && (this.distance.left < -(this.swipeDistance * this.dpr) && this.distance.top < (this.swipeTopDistance * this.dpr)) || (quick && this.distance.left < -15 && this.distance.top / this.distance.left > -5)) {
+                if(Math.abs(this.distance.left) > Math.abs(this.distance.top) && (this.distance.left < -(this.swipeDistance * this.dpr) && this.distance.top < (this.swipeTopDistance * this.dpr)) && (this.distance.left < -15 && this.distance.top / this.distance.left > -5)) {
                     console.log('next');
                     // console.log(-(100 * this.dpr));
                     this.next();
-                } else if(Math.abs(this.distance.left) > Math.abs(this.distance.top) && (this.distance.left > (this.swipeDistance * this.dpr) && this.distance.top < (this.swipeTopDistance * this.dpr)) || (quick && this.distance.left > 15 && this.distance.top / this.distance.left < 5)) {
+                } else if(Math.abs(this.distance.left) > Math.abs(this.distance.top) && (this.distance.left > (this.swipeDistance * this.dpr) && this.distance.top < (this.swipeTopDistance * this.dpr)) && (this.distance.left > 15 && this.distance.top / this.distance.left < 5)) {
                     // console.log(this.distance.left);
                     // console.log(100 * this.dpr);
                     console.log('prev');
