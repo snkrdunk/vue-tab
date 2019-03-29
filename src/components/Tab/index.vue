@@ -194,8 +194,8 @@
                         // this.dpr = 1.5;
                     }
                 } else {
-                    / this.dpr = 1;
-                    this.dpr = 1.5;
+                    this.dpr = 1;
+                    //this.dpr = 1.5;
                 }
             }
         }
