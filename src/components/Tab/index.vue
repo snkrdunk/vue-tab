@@ -122,7 +122,7 @@
                 // console.log('left:' + startLeft);
                 this.touchPoint.startLeft = startLeft;
 
-                const startTop = touchPoint.pageY;
+                const startTop = touchPoint.screenY;
                 // console.log('top:' + startTop);
                 this.touchPoint.startTop = startTop;
 
@@ -138,7 +138,7 @@
                 const distanceLeft = touchPoint.pageX - this.touchPoint.startLeft;
                 // console.log('distance:' + distanceLeft);
                 this.distance.left = distanceLeft;
-                const distanceTop = Math.abs(touchPoint.pageY - this.touchPoint.startTop);
+                const distanceTop = Math.abs(touchPoint.screenY - this.touchPoint.startTop);
                 // console.log('distanceTop:' + distanceTop);
                 this.distance.top = distanceTop;
 
@@ -163,11 +163,11 @@
                 var quick = new Date().getTime() - this.startTime < 1000;
                 // console.log(quick);
                 // console.log(this.distance.top);
-                if((this.distance.left < -(this.swipeDistance * this.dpr) && this.distance.top < (this.swipeTopDistance * this.dpr)) || (quick && this.distance.left < -15 && this.distance.top / this.distance.left > -5)) {
+                if(Math.abs(this.distance.left) > Math.abs(this.distance.top) && (this.distance.left < -(this.swipeDistance * this.dpr) && this.distance.top < (this.swipeTopDistance * this.dpr)) || (quick && this.distance.left < -15 && this.distance.top / this.distance.left > -5)) {
                     console.log('next');
                     // console.log(-(100 * this.dpr));
                     this.next();
-                } else if((this.distance.left > (this.swipeDistance * this.dpr) && this.distance.top < (this.swipeTopDistance * this.dpr)) || (quick && this.distance.left > 15 && this.distance.top / this.distance.left < 5)) {
+                } else if(Math.abs(this.distance.left) > Math.abs(this.distance.top) && (this.distance.left > (this.swipeDistance * this.dpr) && this.distance.top < (this.swipeTopDistance * this.dpr)) || (quick && this.distance.left > 15 && this.distance.top / this.distance.left < 5)) {
                     // console.log(this.distance.left);
                     // console.log(100 * this.dpr);
                     console.log('prev');
